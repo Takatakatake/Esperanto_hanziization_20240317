@@ -85,7 +85,7 @@ if uploaded_file is not None:
             if len(j)==2:
                 word,hanzi=j[0],j[1]
                 if (hanzi!='') and (word!='') and ('#' not in word):
-                    replacements_dict[word]=[conversion_format(hanzi,word),len(word)]#辞書式配列では要素(key)に対する値(value)を後から更新できることを利用している。
+                    replacements_dict[word]=[conversion_format(hanzi,word,format_type),len(word)]#辞書式配列では要素(key)に対する値(value)を後から更新できることを利用している。
 
     ##"'単語の語尾だけをカットした、完全に語根分解された状態の全単語リスト'(result)を漢字置換するための、漢字置換リスト"を置換順序の数字の大きさ順にソート。
     pre_replacements=[]
