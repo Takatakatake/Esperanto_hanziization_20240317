@@ -69,6 +69,9 @@ else:
                 old, new, place_holder = j[0], j[1], j[2]
                 replacements3.append((old, new, place_holder))
 
+# フォームの外に変数textを定義
+text = ""
+
 with st.form(key='profile_form'):
     # テキストボックス
 
@@ -89,17 +92,13 @@ with st.form(key='profile_form'):
             text = replace_esperanto_chars(text, x_to_hat)
         st.text_area("", text, height=300)
 
-        # Correctly handle BytesIO stream for download
-        to_download = io.BytesIO()
-        to_download.write(text.encode('utf-8'))
+        # ダウンロードボタンをフォームの外に移動
+        to_download = io.BytesIO(text.encode('utf-8'))
         to_download.seek(0)
 
-        st.download_button(
-            label="下载文本",
-            data=to_download,
-            file_name="processed_text.html",
-            mime="text/plain"
-        )
-
-# 元のコードの他の部分はそのまま
-
+st.download_button(
+    label="下载文本",
+    data=to_download,
+    file_name="processed_text.txt",
+    mime="text/plain"
+)
