@@ -91,17 +91,6 @@ with st.form(key='profile_form'):
             text = replace_esperanto_chars(text, x_to_hat)
         st.text_area("", text, height=300)
 
-        # ダウンロードボタンをフォームの外に移動
-        to_download = io.BytesIO(text.encode('utf-8'))
-        to_download.seek(0)
-
-        st.download_button(
-            label="下载文本",
-            data=to_download,
-            file_name="processed_text.txt",
-            mime="text/plain"
-        )
-
 # ダウンロードボタンをフォームの外に配置
 if text:
     to_download = io.BytesIO(text.encode('utf-8'))
