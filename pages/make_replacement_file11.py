@@ -18,6 +18,13 @@ with open(file_path, "rb") as file:
             mime="text/csv"
         )
     
+def conversion_format(hanzi, word, format_type):
+    if format_type == 'HTML Format':
+        return '<ruby>{}<rt>{}</rt></ruby>'.format(hanzi, word)
+    elif format_type == 'Parentheses Format':
+        return '{}({})'.format(hanzi, word)
+    elif format_type == 'Only Hanzi':
+        return '{}'.format(hanzi)
 
 # ユーザーに出力形式を選んでもらう
 format_type = st.selectbox(
@@ -68,14 +75,6 @@ if uploaded_file is not None:
 
     ##上の作業に引き続き、"'単語の語尾だけをカットした、完全に語根分解された状態の全単語リスト'(result)を漢字置換するための、漢字置換リスト"を作成していく。　
     ##ここでは自分で作成したエスペラント語根の漢字化リストを反映させる。
-
-    def conversion_format(hanzi, word, format_type):
-        if format_type == 'HTML Format':
-            return '<ruby>{}<rt>{}</rt></ruby>'.format(hanzi, word)
-        elif format_type == 'Parentheses Format':
-            return '{}({})'.format(hanzi, word)
-        elif format_type == 'Only Hanzi':
-            return '{}'.format(hanzi)
 
     input_file="./files_needed_to_get_replacements_text/20240316世界语词根列表＿包含2个字符的世界语词根.csv"
     # input_file="世界语汉字表格_20240312.csv"
