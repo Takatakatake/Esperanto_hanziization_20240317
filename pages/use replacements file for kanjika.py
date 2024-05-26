@@ -89,7 +89,11 @@ with st.form(key='profile_form'):
             text = replace_esperanto_chars(text, x_to_hat)
         st.text_area("", text, height=300)
 
-        to_download = io.BytesIO(text.encode())
+        # Correctly handle BytesIO stream for download
+        to_download = io.BytesIO()
+        to_download.write(text.encode('utf-8'))
+        to_download.seek(0)
+
         st.download_button(
             label="下载文本",
             data=to_download,
